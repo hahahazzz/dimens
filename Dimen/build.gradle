@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 plugins {
   id 'com.android.library'
   id 'org.jetbrains.kotlin.android'
@@ -12,7 +14,6 @@ android {
   defaultConfig {
     minSdk 21
     targetSdk 30
-
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     consumerProguardFiles "consumer-rules.pro"
   }
@@ -29,6 +30,13 @@ android {
   }
   kotlinOptions {
     jvmTarget = '1.8'
+  }
+
+  libraryVariants.all { variant ->
+    variant.outputs.all { output ->
+      def newName = "dimen_release.aar"
+      outputFileName = new File(newName)
+    }
   }
 }
 
